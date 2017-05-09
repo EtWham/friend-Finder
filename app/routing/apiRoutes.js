@@ -12,7 +12,7 @@ module.exports = function(app) {
   });
 
   // listen for post request
-  app.post("/api/friends", function(req, res) {
+  app.post("/api/newFriends", function(req, res) {
     //getting info from user input
     var newFriend = req.body;
     var friendScores = [];
@@ -59,7 +59,7 @@ module.exports = function(app) {
         data.push(newFriend);
       }
       // //statement if there are no scores that match, find the closest score
-      // else if (friendScores[l] *HOW DO I COMPARE NUMBERS BY A RANGE OF LIKE 2* fScore) {
+      // else if (friendScores[l] *HOW DO I COMPARE NUMBERS BY A RANGE OF SAY 2* fScore) {
       //   //creates a close match at that index
       //   closeMatch = data[l];
       //   //sends the close match out
@@ -68,4 +68,4 @@ module.exports = function(app) {
       // }
     }
   });
-}
+};
