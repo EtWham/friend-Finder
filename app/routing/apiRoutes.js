@@ -58,14 +58,14 @@ module.exports = function(app) {
         res.send(match);
         data.push(newFriend);
       }
-      //statement if there are no scores that match, find the closest score
-      else if (friendScores[l] *HOW DO I COMPARE NUMBERS BY A RANGE OF LIKE 2* fScore) {
-        //creates a close match at that index
-        closeMatch = data[l];
-        //sends the close match out
-        res.send(closeMatch);
-        data.push(newFriend);
-      }
+      // //statement if there are no scores that match, find the closest score
+      // else if (friendScores[l] *HOW DO I COMPARE NUMBERS BY A RANGE OF LIKE 2* fScore) {
+      //   //creates a close match at that index
+      //   closeMatch = data[l];
+      //   //sends the close match out
+      //   res.send(closeMatch);
+      //   data.push(newFriend);
+      // }
     }
   });
 }
