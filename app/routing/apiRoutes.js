@@ -1,5 +1,8 @@
+// server & path requirement
 var express = require("express");
 var path = require("path");
+
+var bodyParser = require('body-parser')
 //importing data from friendData array in friends.js
 var friendData = require("../data/friends.js");
 

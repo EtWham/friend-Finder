@@ -1,5 +1,8 @@
-//path requirement
+//server & path requirement
+var express = require("express");
 var path = require("path");
+
+var bodyParser = require('body-parser')
 
 //function routing to specific pages when user visits the site
 module.exports = function(app) {
