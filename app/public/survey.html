@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Friend Finder Survey</title>
+	<meta charset="utf-8">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- jQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+	<div class="container" id="userInput">
+		<h1 class="page-header">Famous TV Friends Survey Questions!</h1>
+		<!-- inputs to provide user name & photo -->
+		<h2><strong>What about You!</strong></h2>
+		<h3>Name</h3>
+		<input class="form-control" type="text" name="name" id="userName">
+		<br>
+		<h3>Link to Photo Image </h3>
+		<input class="form-control" type="text" name="img-link" id="userImage">
+		<!-- survey questions -->
+		<h2 class="page-header"></h2>
+		<h2><strong>Q 1</strong></h2>
+		<h3>Question 1</h3>
+		<select id="survey1">
+			<option>1 (Strongly Disagree)</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4 (Strongly Agree)</option>
+		</select>
+
+		<h2><strong>Q 2</strong></h2>
+		<h3>Question 2</h3>
+		<select id="survey2">
+			<option>1 (Strongly Disagree)</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4 (Strongly Agree)</option>
+		</select>
+
+		<h2><strong>Q 3</strong></h2>
+		<h3>Question 3</h3>
+		<select id="survey3">
+			<option>1 (Strongly Disagree)</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4 (Strongly Agree)</option>
+		</select>
+
+		<h2><strong>Q 4</strong></h2>
+		<h3>Question 4</h3>
+		<select id="survey4">
+			<option>1 (Strongly Disagree)</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4 (Strongly Agree)</option>
+		</select>
+
+		<h2><strong>Q 5</strong></h2>
+		<h3>Question 5</h3>
+		<select id="survey5">
+			<option>1 (Strongly Disagree)</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4 (Strongly Agree)</option>
+		</select>
+
+		<h2><strong>Q 6</strong></h2>
+		<h3>Question 6</h3>
+		<select id="survey6">
+			<option>1 (Strongly Disagree)</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4 (Strongly Agree)</option>
+		</select>
+
+		<h2><strong>Q 7</strong></h2>
+		<h3>Question 7</h3>
+		<select id="survey7">
+			<option>1 (Strongly Disagree)</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4 (Strongly Agree)</option>
+		</select>
+
+		<h2><strong>Q 8</strong></h2>
+		<h3>Question 8</h3>
+		<select id="survey8">
+			<option>1 (Strongly Disagree)</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4 (Strongly Agree)</option>
+		</select>
+
+		<h2><strong>Q 9</strong></h2>
+		<h3>Question 9</h3>
+		<select id="survey9">
+			<option>1 (Strongly Disagree)</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4 (Strongly Agree)</option>
+		</select>
+
+		<h2><strong>Q 10</strong></h2>
+		<h3>Question 10</h3>
+		<select id="survey10">
+			<option>1 (Strongly Disagree)</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4 (Strongly Agree)</option>
+		</select>
+	</div>
+	<!-- creating the submit button  -->
+	<div class="text-left">
+		<button type="button" class="btn btn-primary" id="submit-btn" data-toggle="modal" data-target="#theModal"><span class="glyphicon glyphicon-share-alt"></span>Submit</button>
+	</div>
+	<!-- creating the modal -->
+	<div id="theModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Your Best Match!</h4>
+				</div>
+				<div class="modal-body">
+					<h5 class="modal-title" id="matchName"></h5>
+					<img id="matchImage" src="">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- jQuery activation -->
+	<script type="text/javascript">
+		$('#submit-btn').on('click', function() {
+			//creates the array to store the scores from the survey questions
+			var scoreArray = [];
+			//runs through the survey question ids taking the user answers making them integers then pushing them into the score array
+			for (var i = 1; i < 11; i++) {
+				var scoreNum = $("#survey" + i).val().trim().charAt(0);
+				scoreArray.push(parseInt(scoreNum));
+			}
+			//creates the newFriend object
+			var newFriend = {
+				name: $('#name').val().trim(),
+				photo: $('#img-link').val().trim(),
+				scores: scoreArray
+			}
+			//post request sending the newFriend object to the server
+			$.post('/api/friends', newFriend)
+				.done(function(response) {
+					// returns the response, which should be the equal or closest match
+					var bestMatch = response;
+					//appends to divs on the page for the user to see
+					$('#match-name').text(bestMatch.name);
+					$('#match-img').attr('src', bestMatch.photo);
+				});
+		});
+	</script>
+</body>
+
+</html>
