@@ -12,7 +12,7 @@ module.exports = function(app) {
   });
 
   // listen for post request
-  app.post("/api/newFriends", function(req, res) {
+  app.post("/api/friends", function(req, res) {
     //getting info from user input
     var newFriend = req.body;
     var friendScores = [];
