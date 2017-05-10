@@ -7,7 +7,7 @@ var bodyParser = require('body-parser')
 var friendData = require("../data/friends.js");
 
 //routes
-module.exports = function(app) {
+module.exports.runFriends = function(app) {
 
   //when route is /api/friends, return friendData for display
   app.get("/api/friends", function(req, res) {
@@ -62,7 +62,7 @@ module.exports = function(app) {
         data.push(newFriend);
       }
       // //statement if there are no scores that match, find the closest score
-      // else if (friendScores[l] *HOW DO I COMPARE NUMBERS BY A RANGE OF SAY 2* fScore) {
+      // else if (friendScores[l] *CONSIDER COMPARING WITH %* fScore) {
       //   //creates a close match at that index
       //   closeMatch = data[l];
       //   //sends the close match out

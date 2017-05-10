@@ -18,10 +18,10 @@ app.use(bodyParser.json({
 }));
 
 //Allows access to external css files
-app.use(express.static(path.join(__dirname, '/app/public/css/')));
+app.use(express.static(path.join(__dirname, './app/public/')));
 //api & html routes
-app.use(require('./app/routing/apiRoutes.js'));
-app.use(require('./app/routing/htmlRoutes.js'));
+require('./app/routing/apiRoutes.js').runFriends(app);
+require('./app/routing/htmlRoutes.js').runFriends(app);
 
 //start the server
 app.listen(port, function(){

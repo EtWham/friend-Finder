@@ -5,7 +5,7 @@ var path = require("path");
 var bodyParser = require('body-parser')
 
 //function routing to specific pages when user visits the site
-module.exports = function(app) {
+module.exports.runFriends = function(app) {
   // default route which displays the home page
 	app.use(function(req, res) {
 		res.sendFile(path.join(__dirname, "/../public/home.html"));
